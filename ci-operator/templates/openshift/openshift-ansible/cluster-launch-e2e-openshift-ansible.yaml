@@ -214,7 +214,7 @@ objects:
             builder=$(echo ${IMAGE_FORMAT} | cut -d . -f2)
             if [[ "$builder" == "build02" ]]; then
                 repo_url="http://rpm-repo-${NAMESPACE}.apps.${builder}.gcp.ci.openshift.org"
-            elsif [[ "$builder" == "build04" ]]; then
+            elif [[ "$builder" == "build04" ]]; then
                 repo_url="http://rpm-repo-${NAMESPACE}.apps.${builder}.34d2.p2.openshiftapps.com"
             else
                 echo "Only build02 and build04 are supported; need to add more code to support ${builder}"
