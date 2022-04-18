@@ -206,7 +206,25 @@ objects:
         trap 'rc=$?; if [[ $rc -ne 0 ]]; then touch /tmp/shared/exit; fi; exit $rc' EXIT
         trap 'jobs -p | xargs -r kill || true; exit 0' TERM
 
-        echo "RPM_REPO_OPENSHIFT_ORIGIN=${RPM_REPO_OPENSHIFT_ORIGIN}"
+        if [ -z ${RPM_REPO_OPENSHIFT_ORIGIN+x} ]; then
+            # Since RPM_REPO_OPENSHIFT_ORIGIN is not set, this must be the e2e-aws job in
+            # openshift/origin repo.
+            # In this case, the repo url is calculated based on the machine running the
+            # job and the namespace (taken from the INSTANCE_PREFIX).
+            builder=$(echo ${IMAGE_FORMAT} | cut -d . -f2)
+            if [[ "$builder" == "build02" ]]; then
+                repo_url="http://rpm-repo-${NAMESPACE}.apps.${builder}.gcp.ci.openshift.org"
+            elsif [[ "$builder" == "build04" ]]; then
+                repo_url="http://rpm-repo-${NAMESPACE}.apps.${builder}.34d2.p2.openshiftapps.com"
+            else
+                echo "Only build02 and build04 are supported; need to add more code to support ${builder}"
+                echo "Aborting ..."
+                exit 1
+            fi
+        else
+            repo_url=${RPM_REPO_OPENSHIFT_ORIGIN}
+        fi
+        echo "repo_url=$repo_url"
 
         cd /usr/share/ansible/openshift-ansible/
         mkdir -p test/ci/inventory/group_vars/OSEv3
@@ -221,21 +239,10 @@ objects:
 
         cd /usr/share/ansible/openshift-ansible
 
-        if [[ "$TYPE" == "aws" ]]; then
-            # For aws job, pull the rpms from this prow job just built.
-            # In this case, RPM_REPO_OPENSHIFT_ORIGIN is calculated based on the
-            # machine running the job and the namespace (taken from the INSTANCE_PREFIX).
-            builder=$(echo ${IMAGE_FORMAT} | cut -d . -f2)
-            ansible-playbook -vvv \
-              -e "openshift_test_repo=http://rpm-repo-${NAMESPACE}.apps.${builder}.34d2.p2.openshiftapps.com" \
-              -i test/ci/inventory \
-              test/ci/launch.yml
-        else
-            ansible-playbook -vvv \
-              -e "openshift_test_repo=${RPM_REPO_OPENSHIFT_ORIGIN}" \
-              -i test/ci/inventory \
-              test/ci/launch.yml
-        fi
+        ansible-playbook -vvv \
+          -e "openshift_test_repo=${repo_url}" \
+          -i test/ci/inventory \
+          test/ci/launch.yml
 
         # Create a new cluster-admin user
         ansible -i test/ci/inventory "masters[0]" -m command \
