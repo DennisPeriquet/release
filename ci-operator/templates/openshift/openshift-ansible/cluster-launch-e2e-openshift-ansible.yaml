@@ -16,7 +16,7 @@ parameters:
 - name: IMAGE_TESTS
   required: true
 - name: RPM_REPO_OPENSHIFT_ORIGIN
-  required: true
+  required: false
 - name: CLUSTER_TYPE
   required: true
 - name: TEST_COMMAND
@@ -190,6 +190,10 @@ objects:
         value: /tmp
       - name: RPM_REPO_OPENSHIFT_ORIGIN
         value: ${RPM_REPO_OPENSHIFT_ORIGIN}
+      - name: IMAGE_FORMAT
+        value: ${IMAGE_FORMAT}
+      - name: NAMESPACE
+        value: ${NAMESPACE}
       command:
       - /usr/local/bin/entrypoint-provider
       args:
@@ -201,6 +205,8 @@ objects:
 
         trap 'rc=$?; if [[ $rc -ne 0 ]]; then touch /tmp/shared/exit; fi; exit $rc' EXIT
         trap 'jobs -p | xargs -r kill || true; exit 0' TERM
+
+        echo "RPM_REPO_OPENSHIFT_ORIGIN=${RPM_REPO_OPENSHIFT_ORIGIN}"
 
         cd /usr/share/ansible/openshift-ansible/
         mkdir -p test/ci/inventory/group_vars/OSEv3
@@ -214,10 +220,22 @@ objects:
         export BOTO_CONFIG=/usr/local/e2e-aws-cluster-profile/.awscred
 
         cd /usr/share/ansible/openshift-ansible
-        ansible-playbook -vvv \
-          -e "openshift_test_repo=${RPM_REPO_OPENSHIFT_ORIGIN}" \
-          -i test/ci/inventory \
-          test/ci/launch.yml
+
+        if [[ "$TYPE" == "aws" ]]; then
+            # For aws job, pull the rpms from this prow job just built.
+            # In this case, RPM_REPO_OPENSHIFT_ORIGIN is calculated based on the
+            # machine running the job and the namespace (taken from the INSTANCE_PREFIX).
+            builder=$(echo ${IMAGE_FORMAT} | cut -d . -f2)
+            ansible-playbook -vvv \
+              -e "openshift_test_repo=http://rpm-repo-${NAMESPACE}.apps.${builder}.34d2.p2.openshiftapps.com" \
+              -i test/ci/inventory \
+              test/ci/launch.yml
+        else
+            ansible-playbook -vvv \
+              -e "openshift_test_repo=${RPM_REPO_OPENSHIFT_ORIGIN}" \
+              -i test/ci/inventory \
+              test/ci/launch.yml
+        fi
 
         # Create a new cluster-admin user
         ansible -i test/ci/inventory "masters[0]" -m command \
