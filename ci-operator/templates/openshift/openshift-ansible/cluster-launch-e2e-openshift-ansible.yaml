@@ -206,19 +206,23 @@ objects:
         trap 'rc=$?; if [[ $rc -ne 0 ]]; then touch /tmp/shared/exit; fi; exit $rc' EXIT
         trap 'jobs -p | xargs -r kill || true; exit 0' TERM
 
-        builder=$(echo ${IMAGE_FORMAT} | cut -d . -f2)
+        echo "here at this line1"
+        #builder=$(echo ${IMAGE_FORMAT} | cut -d . -f2)
 
         # The openshift/origin e2e-aws job runs on build04
         #
-        if [[ "$builder" == "build04" && "$TYPE" == "aws" ]]; then
+        #if [[ "$builder" == "build04" && "$TYPE" == "aws" ]]; then
+        if [[ "${RPM_REPO_OPENSHIFT_ORIGIN}" == "to-be-calculated" ]]; then
 
             # In this case, the repo url is calculated based on the machine running the
             # job and the namespace (taken from the INSTANCE_PREFIX).
-            repo_url="http://rpm-repo-${NAMESPACE}.apps.${builder}.34d2.p2.openshiftapps.com"
+            #repo_url="http://rpm-repo-${NAMESPACE}.apps.${builder}.34d2.p2.openshiftapps.com"
+            repo_url="http://rpm-repo-${NAMESPACE}.apps.build04.34d2.p2.openshiftapps.com"
         else
             repo_url=${RPM_REPO_OPENSHIFT_ORIGIN}
         fi
         echo "repo_url=$repo_url"
+        echo "here at this line2"
 
         cd /usr/share/ansible/openshift-ansible/
         mkdir -p test/ci/inventory/group_vars/OSEv3
