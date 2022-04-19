@@ -206,21 +206,15 @@ objects:
         trap 'rc=$?; if [[ $rc -ne 0 ]]; then touch /tmp/shared/exit; fi; exit $rc' EXIT
         trap 'jobs -p | xargs -r kill || true; exit 0' TERM
 
-        if [ -z ${RPM_REPO_OPENSHIFT_ORIGIN+x} ]; then
-            # Since RPM_REPO_OPENSHIFT_ORIGIN is not set, this must be the e2e-aws job in
-            # openshift/origin repo.
+        builder=$(echo ${IMAGE_FORMAT} | cut -d . -f2)
+
+        # The openshift/origin e2e-aws job runs on build04
+        #
+        if [[ "$builder" == "build04" && "$TYPE" == "aws" ]]; then
+
             # In this case, the repo url is calculated based on the machine running the
             # job and the namespace (taken from the INSTANCE_PREFIX).
-            builder=$(echo ${IMAGE_FORMAT} | cut -d . -f2)
-            if [[ "$builder" == "build02" ]]; then
-                repo_url="http://rpm-repo-${NAMESPACE}.apps.${builder}.gcp.ci.openshift.org"
-            elif [[ "$builder" == "build04" ]]; then
-                repo_url="http://rpm-repo-${NAMESPACE}.apps.${builder}.34d2.p2.openshiftapps.com"
-            else
-                echo "Only build02 and build04 are supported; need to add more code to support ${builder}"
-                echo "Aborting ..."
-                exit 1
-            fi
+            repo_url="http://rpm-repo-${NAMESPACE}.apps.${builder}.34d2.p2.openshiftapps.com"
         else
             repo_url=${RPM_REPO_OPENSHIFT_ORIGIN}
         fi
