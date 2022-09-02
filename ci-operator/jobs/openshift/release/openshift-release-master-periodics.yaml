@@ -37756,6 +37756,7 @@ periodics:
       - --report-credentials-file=/etc/report/credentials
       - --secret-dir=/usr/local/pull-secret
       - --target=release-payload-install-analysis
+      - --variant=nightly-4.12
       command:
       - ci-operator
       env:
