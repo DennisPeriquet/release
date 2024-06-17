@@ -2648,7 +2648,7 @@ periodics:
         $extra_flag
       command:
       - /bin/bash
-      image: registry.ci.openshift.org/ci/job-run-aggregator:latest
+      image: registry.build01.ci.openshift.org/dperique/job-run-aggregator-dperique:latest
       imagePullPolicy: Always
       name: job-run-aggregator
       resources:
