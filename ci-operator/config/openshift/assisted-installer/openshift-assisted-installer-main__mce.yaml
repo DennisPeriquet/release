@@ -50,7 +50,7 @@ tests:
       RELEASE_REF: backplane-2.8
     workflow: ocm-ci-manifest-update
 zz_generated_metadata:
-  branch: master
+  branch: main
   org: openshift
   repo: assisted-installer
   variant: mce

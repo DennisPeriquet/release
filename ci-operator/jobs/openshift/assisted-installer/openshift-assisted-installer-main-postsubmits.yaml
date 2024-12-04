@@ -3,8 +3,8 @@ postsubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: build05
+    - ^main$
+    cluster: build03
     decorate: true
     labels:
       ci-operator.openshift.io/is-promotion: "true"
@@ -12,7 +12,7 @@ postsubmits:
       ci.openshift.io/generator: prowgen
       job-release: "4.18"
     max_concurrency: 1
-    name: branch-ci-openshift-assisted-installer-master-edge-images
+    name: branch-ci-openshift-assisted-installer-main-edge-images
     spec:
       containers:
       - args:
@@ -64,15 +64,15 @@ postsubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: build05
+    - ^main$
+    cluster: build03
     decorate: true
     labels:
       ci-operator.openshift.io/variant: edge
       ci.openshift.io/generator: prowgen
       job-release: "4.18"
     max_concurrency: 1
-    name: branch-ci-openshift-assisted-installer-master-edge-mirror-vcsref-image
+    name: branch-ci-openshift-assisted-installer-main-edge-mirror-vcsref-image
     spec:
       containers:
       - args:
@@ -123,15 +123,15 @@ postsubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: build05
+    - ^main$
+    cluster: build03
     decorate: true
     labels:
       ci-operator.openshift.io/variant: edge
       ci.openshift.io/generator: prowgen
       job-release: "4.18"
     max_concurrency: 1
-    name: branch-ci-openshift-assisted-installer-master-edge-mirror-vcsref-image-controller
+    name: branch-ci-openshift-assisted-installer-main-edge-mirror-vcsref-image-controller
     spec:
       containers:
       - args:
@@ -182,8 +182,8 @@ postsubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: build05
+    - ^main$
+    cluster: build03
     decorate: true
     labels:
       ci-operator.openshift.io/cloud: packet-edge
@@ -192,7 +192,7 @@ postsubmits:
       ci.openshift.io/generator: prowgen
       job-release: "4.18"
     max_concurrency: 1
-    name: branch-ci-openshift-assisted-installer-master-edge-publish-multi-arch-images
+    name: branch-ci-openshift-assisted-installer-main-edge-publish-multi-arch-images
     spec:
       containers:
       - args:
@@ -253,15 +253,15 @@ postsubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: build05
+    - ^main$
+    cluster: build03
     decorate: true
     labels:
       ci-operator.openshift.io/variant: edge
       ci.openshift.io/generator: prowgen
       job-release: "4.18"
     max_concurrency: 1
-    name: branch-ci-openshift-assisted-installer-master-edge-unit-test-postsubmit
+    name: branch-ci-openshift-assisted-installer-main-edge-unit-test-postsubmit
     spec:
       containers:
       - args:
@@ -312,14 +312,14 @@ postsubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: build05
+    - ^main$
+    cluster: build03
     decorate: true
     labels:
       ci-operator.openshift.io/is-promotion: "true"
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-openshift-assisted-installer-master-images
+    name: branch-ci-openshift-assisted-installer-main-images
     spec:
       containers:
       - args:
@@ -370,15 +370,15 @@ postsubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: build05
+    - ^main$
+    cluster: build03
     decorate: true
     labels:
       ci-operator.openshift.io/is-promotion: "true"
       ci-operator.openshift.io/variant: mce
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-openshift-assisted-installer-master-mce-images
+    name: branch-ci-openshift-assisted-installer-main-mce-images
     spec:
       containers:
       - args:
@@ -430,14 +430,14 @@ postsubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: build05
+    - ^main$
+    cluster: build03
     decorate: true
     labels:
       ci-operator.openshift.io/variant: mce
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-openshift-assisted-installer-master-mce-publish
+    name: branch-ci-openshift-assisted-installer-main-mce-publish
     spec:
       containers:
       - args:
@@ -488,14 +488,14 @@ postsubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: build05
+    - ^main$
+    cluster: build03
     decorate: true
     labels:
       ci-operator.openshift.io/variant: mce
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-openshift-assisted-installer-master-mce-publish-controller
+    name: branch-ci-openshift-assisted-installer-main-mce-publish-controller
     spec:
       containers:
       - args:
@@ -546,8 +546,8 @@ postsubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    cluster: build05
+    - ^main$
+    cluster: build03
     decorate: true
     decoration_config:
       skip_cloning: true
@@ -556,7 +556,7 @@ postsubmits:
       ci-operator.openshift.io/variant: okd-scos
       ci.openshift.io/generator: prowgen
     max_concurrency: 1
-    name: branch-ci-openshift-assisted-installer-master-okd-scos-images
+    name: branch-ci-openshift-assisted-installer-main-okd-scos-images
     spec:
       containers:
       - args:
