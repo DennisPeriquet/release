@@ -4,7 +4,7 @@ periodics:
   cron: 45 1 * * *
   decorate: true
   extra_refs:
-  - base_ref: master
+  - base_ref: main
     org: openshift
     repo: assisted-installer
   labels:
@@ -65,7 +65,7 @@ periodics:
   cron: 58 2 * * *
   decorate: true
   extra_refs:
-  - base_ref: master
+  - base_ref: main
     org: openshift
     repo: assisted-installer
   labels:

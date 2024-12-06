@@ -294,7 +294,7 @@ tests:
       PLATFORM: vsphere
     workflow: assisted-vsphere
 zz_generated_metadata:
-  branch: master
+  branch: main
   org: openshift
   repo: assisted-installer
   variant: edge
