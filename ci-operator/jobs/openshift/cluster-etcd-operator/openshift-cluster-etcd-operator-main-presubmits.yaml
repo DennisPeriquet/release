@@ -1,11 +1,11 @@
 presubmits:
   openshift/cluster-etcd-operator:
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/configmap-scale
     decorate: true
     labels:
@@ -13,7 +13,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-configmap-scale
+    name: pull-ci-openshift-cluster-etcd-operator-main-configmap-scale
     optional: true
     rerun_command: /test configmap-scale
     spec:
@@ -74,11 +74,11 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )configmap-scale,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/e2e-agnostic-ovn
     decorate: true
     labels:
@@ -86,9 +86,8 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-agnostic-ovn
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-agnostic-ovn
     rerun_command: /test e2e-agnostic-ovn
-    skip_if_only_changed: ^docs/|\.md$|^(?:.*/)?(?:\.gitignore|OWNERS|OWNERS_ALIASES|LICENSE)$
     spec:
       containers:
       - args:
@@ -147,10 +146,10 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-agnostic-ovn,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
+    - ^main$
+    - ^main-
     cluster: build02
     context: ci/prow/e2e-agnostic-ovn-upgrade
     decorate: true
@@ -159,9 +158,8 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: gcp
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-agnostic-ovn-upgrade
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-agnostic-ovn-upgrade
     rerun_command: /test e2e-agnostic-ovn-upgrade
-    skip_if_only_changed: ^docs/|\.md$|^(?:.*/)?(?:\.gitignore|OWNERS|OWNERS_ALIASES|LICENSE)$
     spec:
       containers:
       - args:
@@ -220,11 +218,11 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-agnostic-ovn-upgrade,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/e2e-aws
     decorate: true
     labels:
@@ -232,7 +230,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-aws
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-aws
     optional: true
     rerun_command: /test e2e-aws
     spec:
@@ -295,9 +293,9 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/e2e-aws-cpms
     decorate: true
     labels:
@@ -305,7 +303,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-aws-cpms
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-aws-cpms
     rerun_command: /test e2e-aws-cpms
     spec:
       containers:
@@ -365,11 +363,11 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-aws-cpms,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/e2e-aws-disruptive
     decorate: true
     labels:
@@ -377,7 +375,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-aws-disruptive
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-aws-disruptive
     optional: true
     rerun_command: /test e2e-aws-disruptive
     spec:
@@ -438,11 +436,11 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-aws-disruptive,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/e2e-aws-disruptive-ovn
     decorate: true
     labels:
@@ -450,7 +448,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-aws-disruptive-ovn
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-aws-disruptive-ovn
     optional: true
     rerun_command: /test e2e-aws-disruptive-ovn
     spec:
@@ -513,9 +511,9 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/e2e-aws-etcd-certrotation
     decorate: true
     labels:
@@ -523,7 +521,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-aws-etcd-certrotation
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-aws-etcd-certrotation
     optional: true
     rerun_command: /test e2e-aws-etcd-certrotation
     spec:
@@ -586,9 +584,9 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/e2e-aws-etcd-recovery
     decorate: true
     labels:
@@ -596,7 +594,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-aws-etcd-recovery
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-aws-etcd-recovery
     optional: true
     rerun_command: /test e2e-aws-etcd-recovery
     spec:
@@ -659,9 +657,9 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/e2e-aws-ovn-etcd-scaling
     decorate: true
     labels:
@@ -669,7 +667,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-aws-ovn-etcd-scaling
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-aws-ovn-etcd-scaling
     rerun_command: /test e2e-aws-ovn-etcd-scaling
     spec:
       containers:
@@ -731,9 +729,9 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/e2e-aws-ovn-serial
     decorate: true
     labels:
@@ -741,7 +739,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-aws-ovn-serial
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-aws-ovn-serial
     rerun_command: /test e2e-aws-ovn-serial
     spec:
       containers:
@@ -801,11 +799,11 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-aws-ovn-serial,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/e2e-aws-ovn-single-node
     decorate: true
     labels:
@@ -813,9 +811,8 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-aws-ovn-single-node
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-aws-ovn-single-node
     rerun_command: /test e2e-aws-ovn-single-node
-    skip_if_only_changed: ^docs/|\.md$|^(?:.*/)?(?:\.gitignore|OWNERS|OWNERS_ALIASES|LICENSE)$
     spec:
       containers:
       - args:
@@ -874,11 +871,11 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-aws-ovn-single-node,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build02
+    - ^main$
+    - ^main-
+    cluster: build03
     context: ci/prow/e2e-azure
     decorate: true
     labels:
@@ -886,7 +883,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: azure4
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-azure
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-azure
     optional: true
     rerun_command: /test e2e-azure
     spec:
@@ -947,11 +944,11 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-azure,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build02
+    - ^main$
+    - ^main-
+    cluster: build03
     context: ci/prow/e2e-azure-ovn-etcd-scaling
     decorate: true
     labels:
@@ -959,7 +956,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: azure4
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-azure-ovn-etcd-scaling
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-azure-ovn-etcd-scaling
     optional: true
     rerun_command: /test e2e-azure-ovn-etcd-scaling
     spec:
@@ -1020,10 +1017,10 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-azure-ovn-etcd-scaling,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
+    - ^main$
+    - ^main-
     cluster: build02
     context: ci/prow/e2e-gcp
     decorate: true
@@ -1032,7 +1029,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: gcp
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-gcp
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-gcp
     optional: true
     rerun_command: /test e2e-gcp
     spec:
@@ -1093,10 +1090,10 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-gcp,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
+    - ^main$
+    - ^main-
     cluster: build02
     context: ci/prow/e2e-gcp-disruptive
     decorate: true
@@ -1105,7 +1102,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: gcp
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-gcp-disruptive
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-gcp-disruptive
     optional: true
     rerun_command: /test e2e-gcp-disruptive
     spec:
@@ -1166,10 +1163,10 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-gcp-disruptive,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
+    - ^main$
+    - ^main-
     cluster: build02
     context: ci/prow/e2e-gcp-disruptive-ovn
     decorate: true
@@ -1178,7 +1175,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: gcp
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-gcp-disruptive-ovn
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-gcp-disruptive-ovn
     optional: true
     rerun_command: /test e2e-gcp-disruptive-ovn
     spec:
@@ -1239,10 +1236,10 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-gcp-disruptive-ovn,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
+    - ^main$
+    - ^main-
     cluster: build02
     context: ci/prow/e2e-gcp-ovn-etcd-scaling
     decorate: true
@@ -1251,7 +1248,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: gcp
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-gcp-ovn-etcd-scaling
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-gcp-ovn-etcd-scaling
     optional: true
     rerun_command: /test e2e-gcp-ovn-etcd-scaling
     spec:
@@ -1312,11 +1309,11 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-gcp-ovn-etcd-scaling,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build02
+    - ^main$
+    - ^main-
+    cluster: build03
     context: ci/prow/e2e-metal-assisted
     decorate: true
     labels:
@@ -1324,7 +1321,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-metal-assisted
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-metal-assisted
     rerun_command: /test e2e-metal-assisted
     spec:
       containers:
@@ -1384,10 +1381,10 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-metal-assisted,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
+    - ^main$
+    - ^main-
     cluster: build05
     context: ci/prow/e2e-metal-ipi-ovn-ipv6
     decorate: true
@@ -1397,7 +1394,7 @@ presubmits:
       ci-operator.openshift.io/cluster: build05
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-metal-ipi-ovn-ipv6
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-metal-ipi-ovn-ipv6
     rerun_command: /test e2e-metal-ipi-ovn-ipv6
     spec:
       containers:
@@ -1459,9 +1456,9 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build02
+    - ^main$
+    - ^main-
+    cluster: build03
     context: ci/prow/e2e-metal-ovn-ha-cert-rotation-shutdown
     decorate: true
     labels:
@@ -1469,7 +1466,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: packet-assisted
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-metal-ovn-ha-cert-rotation-shutdown
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-metal-ovn-ha-cert-rotation-shutdown
     optional: true
     rerun_command: /test e2e-metal-ovn-ha-cert-rotation-shutdown
     spec:
@@ -1532,9 +1529,9 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build02
+    - ^main$
+    - ^main-
+    cluster: build03
     context: ci/prow/e2e-metal-ovn-sno-cert-rotation-shutdown
     decorate: true
     labels:
@@ -1542,7 +1539,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: packet-sno
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-metal-ovn-sno-cert-rotation-shutdown
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-metal-ovn-sno-cert-rotation-shutdown
     optional: true
     rerun_command: /test e2e-metal-ovn-sno-cert-rotation-shutdown
     spec:
@@ -1603,11 +1600,11 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-metal-ovn-sno-cert-rotation-shutdown,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build02
+    - ^main$
+    - ^main-
+    cluster: build03
     context: ci/prow/e2e-metal-single-node-live-iso
     decorate: true
     labels:
@@ -1615,7 +1612,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: packet-sno
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-metal-single-node-live-iso
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-metal-single-node-live-iso
     optional: true
     rerun_command: /test e2e-metal-single-node-live-iso
     spec:
@@ -1676,11 +1673,11 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-metal-single-node-live-iso,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/e2e-operator
     decorate: true
     labels:
@@ -1688,9 +1685,8 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-operator
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-operator
     rerun_command: /test e2e-operator
-    skip_if_only_changed: ^docs/|\.md$|^(?:.*/)?(?:\.gitignore|OWNERS|OWNERS_ALIASES|LICENSE)$
     spec:
       containers:
       - args:
@@ -1751,9 +1747,9 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/e2e-operator-fips
     decorate: true
     labels:
@@ -1761,7 +1757,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: aws
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-operator-fips
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-operator-fips
     optional: true
     rerun_command: /test e2e-operator-fips
     spec:
@@ -1822,10 +1818,10 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )e2e-operator-fips,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
+    - ^main$
+    - ^main-
     cluster: vsphere02
     context: ci/prow/e2e-vsphere-ovn-etcd-scaling
     decorate: true
@@ -1834,7 +1830,7 @@ presubmits:
       ci-operator.openshift.io/cloud-cluster-profile: vsphere-elastic
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-e2e-vsphere-ovn-etcd-scaling
+    name: pull-ci-openshift-cluster-etcd-operator-main-e2e-vsphere-ovn-etcd-scaling
     optional: true
     rerun_command: /test e2e-vsphere-ovn-etcd-scaling
     spec:
@@ -1897,15 +1893,15 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build02
+    - ^main$
+    - ^main-
+    cluster: build03
     context: ci/prow/images
     decorate: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-images
+    name: pull-ci-openshift-cluster-etcd-operator-main-images
     rerun_command: /test images
     spec:
       containers:
@@ -1951,9 +1947,9 @@ presubmits:
   - agent: kubernetes
     always_run: false
     branches:
-    - ^master$
-    - ^master-
-    cluster: build01
+    - ^main$
+    - ^main-
+    cluster: build09
     context: ci/prow/okd-scos-e2e-aws-ovn
     decorate: true
     decoration_config:
@@ -1964,7 +1960,7 @@ presubmits:
       ci-operator.openshift.io/variant: okd-scos
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-okd-scos-e2e-aws-ovn
+    name: pull-ci-openshift-cluster-etcd-operator-main-okd-scos-e2e-aws-ovn
     optional: true
     rerun_command: /test okd-scos-e2e-aws-ovn
     skip_if_only_changed: ^docs/|\.md$|^(?:.*/)?(?:\.gitignore|OWNERS|PROJECT|LICENSE)$
@@ -2027,11 +2023,11 @@ presubmits:
           secretName: result-aggregator
     trigger: (?m)^/test( | .* )okd-scos-e2e-aws-ovn,?($|\s.*)
   - agent: kubernetes
-    always_run: false
+    always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build02
+    - ^main$
+    - ^main-
+    cluster: build03
     context: ci/prow/okd-scos-images
     decorate: true
     decoration_config:
@@ -2040,8 +2036,7 @@ presubmits:
       ci-operator.openshift.io/variant: okd-scos
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-okd-scos-images
-    optional: true
+    name: pull-ci-openshift-cluster-etcd-operator-main-okd-scos-images
     rerun_command: /test okd-scos-images
     spec:
       containers:
@@ -2088,15 +2083,15 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build02
+    - ^main$
+    - ^main-
+    cluster: build03
     context: ci/prow/unit
     decorate: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-unit
+    name: pull-ci-openshift-cluster-etcd-operator-main-unit
     rerun_command: /test unit
     spec:
       containers:
@@ -2141,15 +2136,15 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build02
+    - ^main$
+    - ^main-
+    cluster: build03
     context: ci/prow/verify
     decorate: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-verify
+    name: pull-ci-openshift-cluster-etcd-operator-main-verify
     rerun_command: /test verify
     spec:
       containers:
@@ -2194,15 +2189,15 @@ presubmits:
   - agent: kubernetes
     always_run: true
     branches:
-    - ^master$
-    - ^master-
-    cluster: build02
+    - ^main$
+    - ^main-
+    cluster: build03
     context: ci/prow/verify-deps
     decorate: true
     labels:
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-cluster-etcd-operator-master-verify-deps
+    name: pull-ci-openshift-cluster-etcd-operator-main-verify-deps
     rerun_command: /test verify-deps
     spec:
       containers:
